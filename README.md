@@ -17,5 +17,5 @@ usergen -n names.txt -d target.com
 ### Install From Source
 
 ```
-go install -v github.com/bin3xish477/usergen@latest
+go install -v github.com/bin3xish477/usergen
 ```
