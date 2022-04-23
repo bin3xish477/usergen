@@ -35,12 +35,13 @@ func main() {
 		return
 	}
 
-	var names []string
 	f, err := os.Open(args.NameFile)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
+	
+	var names []string
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -50,7 +51,6 @@ func main() {
 	var userList []string
 	for _, name := range names {
 		lower := strings.ToLower(name)
-
 		userList = append(userList, strings.Replace(lower, " ", ".", -1))
 		userList = append(userList, strings.Replace(lower, " ", "-", -1))
 		userList = append(userList, strings.Replace(lower, " ", "", -1))
