@@ -18,5 +18,5 @@ usergen -n names.txt -d target.com
 
 **NOTE**: must have `GOPATH` environment variable in your PATH and obviously go installed
 ```
-go install -v github.com/bin3xish477/usergen
+go install -v github.com/bin3xish477/usergen@latest
 ```
