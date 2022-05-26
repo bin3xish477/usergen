@@ -15,6 +15,8 @@ var args struct {
 	SaveFile string `arg:"-s,--save" help:"save userlist to specified file"`
 }
 
+var join = strings.Join
+
 func writeUserList(userList []string) {
 	f, err := os.Create(args.SaveFile)
 	if err != nil {
@@ -40,7 +42,7 @@ func main() {
 		fmt.Println(err.Error())
 		return
 	}
-	
+
 	var names []string
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -61,13 +63,14 @@ func main() {
 		lastName = split[len(split)-1]
 		lastInitial = string(lastName[0])
 		//firstName, initial, lastName, lastInitial = split[0], string(firstName[0]), split[len(split)-1], string(lastName[0])
-		userList = append(userList, strings.Join([]string{lastName, firstName}, ""))
-		userList = append(userList, strings.Join([]string{initial, lastName}, ""))
-		userList = append(userList, strings.Join([]string{lastName, initial}, ""))
-		userList = append(userList, strings.Join([]string{firstName, lastInitial}, ""))
-		userList = append(userList, strings.Join([]string{initial, ".", lastName}, ""))
-		userList = append(userList, strings.Join([]string{lastInitial, ".", firstName}, ""))
-		userList = append(userList, strings.Join([]string{firstName, ".", lastInitial}, ""))
+		userList = append(userList, join([]string{lastName, firstName}, ""))
+		userList = append(userList, join([]string{initial, lastName}, ""))
+		userList = append(userList, join([]string{lastName, initial}, ""))
+		userList = append(userList, join([]string{firstName, lastInitial}, ""))
+		userList = append(userList, join([]string{initial, ".", lastName}, ""))
+		userList = append(userList, join([]string{lastInitial, ".", firstName}, ""))
+		userList = append(userList, join([]string{firstName, ".", lastInitial}, ""))
+		userList = append(userList, join([]string{lastName, firstName[:4]}, "")) //Amazon email format
 		userList = append(userList, firstName)
 		userList = append(userList, lastName)
 	}
