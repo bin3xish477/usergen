@@ -70,6 +70,7 @@ func main() {
 		userList = append(userList, join([]string{initial, ".", lastName}, ""))
 		userList = append(userList, join([]string{lastInitial, ".", firstName}, ""))
 		userList = append(userList, join([]string{firstName, ".", lastInitial}, ""))
+		userList = append(userList, join([]string{initial, "-", lastName}, ""))
 		userList = append(userList, join([]string{lastName, firstName[:4]}, "")) //Amazon email format
 		userList = append(userList, firstName)
 		userList = append(userList, lastName)
